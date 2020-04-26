@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+    id "org.springframework.boot" version "2.2.2.RELEASE"
+}
+
+version = '1.0-SNAPSHOT'
+group = 'com.watkins.http'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+bootJar {
+    mainClassName = 'com.watkins.http.Application'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    // Lib folder for ITCSM dependencies
+    implementation fileTree(dir: 'lib', include: ['*.jar'])
+    // Qpid Client Library
+    implementation group: 'org.apache.qpid', name: 'apache-qpid-jms-amqp-0-x', version: "$qpidClientVersion"
+    // JMS
+    implementation group: 'org.glassfish.main.javaee-api', name: 'javax.jms', version: "$jmsVersion"
+    // Miscellaneous
+    implementation group: 'commons-cli', name: 'commons-cli', version: "$apacheCommonsCliVersion"
+    implementation group: 'org.apache.xmlbeans', name: 'xmlbeans', version: "$xmlBeansVersion"
+    implementation group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: "$bouncyCastleProviderVersion"
+    implementation group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: "$bouncyCastleKixVersion"
+    implementation group: 'org.bouncycastle', name: 'bcmail-jdk15on', version: "$bouncyCastleMailVersion"
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: "$log4jVersion"
+    implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: "$slf4jVersion"
+    compile ("org.springframework.boot:spring-boot-starter:$springVersion"){
+        exclude module : 'spring-boot-starter-logging'
+    }
+    compile("org.springframework.boot:spring-boot-starter-web:$springVersion") {
+        exclude module : 'spring-boot-starter-logging'
+    }
+    compile("io.spring.gradle:dependency-management-plugin:$springDependencyManagementVersion"){
+        exclude module : 'spring-boot-starter-logging'
+    }
+    compile group: 'org.springframework', name: 'spring-jms', version: "$springJmsVersion"
+
+    compile group: 'org.elasticsearch', name: 'elasticsearch', version: "$elasticVersion"
+    compile group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: "$elasticVersion"
+
+    compile("org.springframework.boot:spring-boot-starter-test:$springVersion"){
+        exclude module : 'spring-boot-starter-logging'
+    }
+
+    compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+
+    compile group: 'commons-io', name: 'commons-io', version: "$apacheCommonsIOVersion"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

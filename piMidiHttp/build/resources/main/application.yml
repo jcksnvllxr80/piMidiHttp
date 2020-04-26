@@ -1,0 +1,37 @@
+server:
+  port: 8081
+sam:
+  source-emp-address: pjpb.b:sam
+  username: sam
+  jms:
+    host: 192.168.1.122:10040
+    connection-timeout: 0
+    pub-sub-domain: false
+    consumer-queue: myQueueToApplication
+    producer-queue: myQueueFromApplication
+    destination-emp-address: myDestAddress
+    broker-username: guest
+    broker-password: guest
+  parser:
+    keystore-path: /etc/watkins/keystores/myKs_RSA_2048.jks
+    keystore-password: changeMeNow
+    status-properties-list:
+      - 001f
+      - 2401
+      - 2402
+      - 2403
+      - 2404
+      - 2430
+      - 2801
+      - 2811
+      - 4020
+    scac: abcd
+  controller:
+    response-wait-time-ms: 10000
+elasticsearch:
+  host: 127.0.0.1
+  port: 9200
+  username: elastic
+  password: changeme
+  index: itcsm
+  type: _doc
