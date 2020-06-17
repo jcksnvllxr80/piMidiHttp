@@ -1,16 +1,11 @@
-package com.watkins.http.ismpMsgHandlers;
+package com.watkins.http.msgHandlers;
 
-import com.watkins.http.customObjects.EmpAddress;
-import com.watkins.http.customObjects.EmpSmidPair;
-import com.watkins.http.customObjects.SmIdAddress;
 import org.apache.commons.cli.*;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Map;
 
 public class MessagingHandlerUtilities {

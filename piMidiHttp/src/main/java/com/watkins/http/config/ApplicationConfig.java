@@ -2,7 +2,7 @@ package com.watkins.http.config;
 
 
 import com.watkins.http.elastic.ElasticClient;
-import com.watkins.http.ismpMsgHandlers.ElasticUtilities;
+import com.watkins.http.msgHandlers.ElasticUtilities;
 import com.watkins.http.messaging.LatestResponse;
 import com.watkins.http.messaging.JmsConsumer;
 import com.watkins.http.messaging.JmsProducer;

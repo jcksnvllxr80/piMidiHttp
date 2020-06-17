@@ -1,9 +1,6 @@
 package com.watkins.http.controller;
 
-import com.watkins.http.customObjects.AssetList;
-import com.watkins.http.customObjects.StatusPropertyList;
 import com.watkins.http.customObjects.SubscriptionList;
-import com.watkins.http.ismpMsgHandlers.*;
 import com.watkins.http.messaging.LatestResponse;
 import com.watkins.http.messaging.Producer;
 import com.watkins.http.parser.Parser;
@@ -14,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import static com.watkins.http.parser.MessageType.*;

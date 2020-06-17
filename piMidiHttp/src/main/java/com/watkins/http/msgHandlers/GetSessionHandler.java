@@ -1,4 +1,4 @@
-package com.watkins.http.ismpMsgHandlers;
+package com.watkins.http.msgHandlers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

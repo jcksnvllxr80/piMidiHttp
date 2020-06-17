@@ -1,7 +1,6 @@
 package com.watkins.http.parser;
 
-import com.watkins.http.customObjects.EmpSmidPair;
-import com.watkins.http.ismpMsgHandlers.*;
+import com.watkins.http.msgHandlers.*;
 import com.watkins.http.messaging.LatestResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.util.ArrayList;
-
-
-import static com.watkins.http.parser.MessageType.*;
 
 public class Parser {
     public final Logger LOGGER = LoggerFactory.getLogger(Parser.class);
