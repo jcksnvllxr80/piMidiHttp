@@ -1,4 +1,4 @@
-package com.watkins.http.ismpMsgHandlers;
+package com.watkins.http.msgHandlers;
 
 import com.watkins.http.elastic.ElasticClient;
 import org.json.JSONException;
