@@ -10,20 +10,14 @@ import java.util.Map;
 
 public class MessagingHandlerUtilities {
     Logger LOGGER = LoggerFactory.getLogger(MessagingHandlerUtilities.class);
-    int MESSAGE_VERSION = 1;
-    public String username;
     public int sessionId;
-    public String sourceEmpAddress;
-    public String destinationEmpAddress;
 
     public MessagingHandlerUtilities() {
     }
 
-    public MessagingHandlerUtilities(String username, String destinationEmpAddress, int sessionId, String sourceEmpAddress){
-        this.username = username;
+
+    public MessagingHandlerUtilities(int sessionId){
         this.sessionId = sessionId;
-        this.sourceEmpAddress = sourceEmpAddress;
-        this.destinationEmpAddress = destinationEmpAddress;
     }
 
 
@@ -34,44 +28,8 @@ public class MessagingHandlerUtilities {
 
 
     public void setMessageSettings(String message){
-        // populate the EMP header information
-//        message.setDataIntegrityType(dataInteg);
 //        LOGGER.debug("EMP message DataIntegrityType is set to: " + message.getDataIntegrityType());
 //        message.setMessageNumberTransactionId(transactionID); // any non-zero number
-//        LOGGER.debug("EMP message MessageNumberTransactionId is set to: " + message.getMessageNumberTransactionId());
-//        message.setMessageNumberSessionId(this.sessionId); // zero for requesting session & non-zero for every other message
-//        LOGGER.debug("EMP message MessageNumberSessionId is set to: " + message.getMessageNumberSessionId());
-//        message.setProtocolVersion((short) 4);
-//        LOGGER.debug("EMP message ProtocolVersion is set to: " + message.getProtocolVersion());
-//        message.setBodyCompressed(false);
-//        LOGGER.debug("EMP message BodyCompressed is set to: " + message.isBodyCompressed());
-//        message.setBodyEncrypted(false);
-//        LOGGER.debug("EMP message BodyEncrypted is set to: " + message.isBodyEncrypted());
-//        message.setTimestampAbsolute(false);
-//        LOGGER.debug("EMP message TimestampAbsolute is set to: " + message.isTimestampAbsolute());
-//        message.setTimeToLive(5000);
-//        LOGGER.debug("EMP message TimeToLive is set to: " + message.getTimeToLive());
-//        // Routing QoS Fields
-//        message.setQosClass(1);
-//        LOGGER.debug("EMP message QosClass is set to: " + message.getQosClass());
-//        message.setQosPriority(0);
-//        LOGGER.debug("EMP message QosPriority is set to: " + message.getQosPriority());
-//        message.setNetworkPreference(0);
-//        LOGGER.debug("EMP message NetworkPreference is set to: " + message.getNetworkPreference());
-//        message.setSpecialHandling(1);
-//        LOGGER.debug("EMP message SpecialHandling is set to: " + message.getSpecialHandling());
-//        message.setQosOutcomeNtfnRequested(true);
-//        LOGGER.debug("EMP message QosOutcomeNtfnRequested is set to: " + message.isQosOutcomeNtfnRequested());
-//        message.setQosDeliveryNtfnRequested(false);
-//        LOGGER.debug("EMP message QosDeliveryNtfnRequested is set to: " + message.isQosDeliveryNtfnRequested());
-//        message.setQosNtwkCompRequested(true);
-//        LOGGER.debug("EMP message QosNtwkCompRequested is set to: " + message.isQosNtwkCompRequested());
-//        message.setMessageTime(Instant.now().getEpochSecond());
-//        LOGGER.debug("EMP message MessageTime is set to: " + message.getMessageTime());
-//        message.setSourceAddress(this.sourceEmpAddress);
-//        LOGGER.debug("EMP message SourceAddress is set to: " + message.getSourceAddress());
-//        message.setDestAddress(this.destinationEmpAddress);
-//        LOGGER.debug("EMP message DestAddress is set to: " + message.getDestAddress());
     }
 
 

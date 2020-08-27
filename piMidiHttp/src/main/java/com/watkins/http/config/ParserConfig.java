@@ -6,20 +6,11 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Component
-@ConfigurationProperties(value="sam.parser")
+@ConfigurationProperties(value="pi-midi-http.parser")
 public class ParserConfig {
-    private String scac;
     private String keystorePath;
     private String keystorePassword;
     private ArrayList<String> statusPropertiesList;
-
-    public String getScac() {
-        return scac;
-    }
-
-    public void setScac(String scac) {
-        this.scac = scac;
-    }
 
     public ArrayList<String> getStatusPropertiesList() {
         return statusPropertiesList;

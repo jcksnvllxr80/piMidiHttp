@@ -1,2 +1,4 @@
 Manifest-Version: 1.0
+Implementation-Title: Pi-MIDI-Http
+Implementation-Version: 0.2.0
 

@@ -23,6 +23,6 @@ public class StatusPropertyList {
 
     @Override
     public String toString() {
-        return this.statusPropertyList.stream().collect(Collectors.joining(", "));
+        return String.join(", ", this.statusPropertyList);
     }
 }

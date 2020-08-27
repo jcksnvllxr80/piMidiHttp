@@ -1,7 +1,6 @@
 package com.watkins.http.customObjects;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class SubscriptionList {
     private ArrayList<String> smidList;
@@ -21,6 +20,6 @@ public class SubscriptionList {
 
     @Override
     public String toString() {
-        return this.smidList.stream().collect(Collectors.joining(", "));
+        return String.join(", ", this.smidList);
     }
 }

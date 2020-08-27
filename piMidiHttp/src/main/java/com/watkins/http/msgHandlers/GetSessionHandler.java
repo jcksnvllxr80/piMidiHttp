@@ -6,11 +6,10 @@ import org.slf4j.LoggerFactory;
 
 public class GetSessionHandler extends MessagingHandlerUtilities {
     Logger LOGGER = LoggerFactory.getLogger(GetSessionHandler.class);
-    private ElasticUtilities elasticUtilities;
+    private final ElasticUtilities elasticUtilities;
 
-    public GetSessionHandler(String username, String destinationEmpAddress, int sessionId, String sourceEmpAddress,
-            ElasticUtilities elasticUtilities) {
-        super(username, destinationEmpAddress, sessionId, sourceEmpAddress);
+    public GetSessionHandler(int sessionId, ElasticUtilities elasticUtilities) {
+        super(sessionId);
         this.elasticUtilities = elasticUtilities;
     }
 

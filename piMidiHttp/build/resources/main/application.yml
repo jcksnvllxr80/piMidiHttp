@@ -1,17 +1,6 @@
 server:
   port: 8081
-sam:
-  source-emp-address: mySourceAddress
-  username: sam
-  jms:
-    host: 192.168.1.122:10040
-    connection-timeout: 0
-    pub-sub-domain: false
-    consumer-queue: myQueueToApplication
-    producer-queue: myQueueFromApplication
-    destination-emp-address: myDestAddress
-    broker-username: guest
-    broker-password: guest
+pi-midi-http:
   parser:
     keystore-path: /etc/watkins/keystores/myKs_RSA_2048.jks
     keystore-password: changeMeNow
@@ -25,7 +14,6 @@ sam:
       - 2801
       - 2811
       - 4020
-    scac: abcd
   controller:
     response-wait-time-ms: 10000
 elasticsearch:
@@ -35,3 +23,9 @@ elasticsearch:
   password: changeme
   index: itcsm
   type: _doc
+spring:
+  banner:
+    location: classpath:banner.txt
+  output:
+    ansi:
+      enabled: ALWAYS
