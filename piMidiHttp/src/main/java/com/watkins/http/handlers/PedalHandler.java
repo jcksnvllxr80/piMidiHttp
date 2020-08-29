@@ -12,7 +12,7 @@ public class PedalHandler extends HandlerUtilities {
 
     public PedalHandler(String pedalsPath) {
         this.pedalsPath = pedalsPath;
-        LOGGER.debug("Instantiating PedalHandler object. " + this.toString());
+        LOGGER.debug("Instantiating " + this.getClass().getName() + " object. " + this.toString());
     }
 
 
@@ -30,7 +30,8 @@ public class PedalHandler extends HandlerUtilities {
     }
 
 
-    public String getPedalConfigJson(String pedalName) {
-        return readFile(this.pedalsPath + "/" + pedalName);
+    public String getPedalConfigYaml(String pedalName) {
+        String filePath = this.pedalsPath + pedalName;
+        return validatePath(filePath) ? readFile(filePath) : "Bad path: " + filePath;
     }
 }

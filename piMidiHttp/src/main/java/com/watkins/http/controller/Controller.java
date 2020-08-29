@@ -31,16 +31,30 @@ public class Controller {
 
 
     @PutMapping("/pedals/")
-    String getPedalsList() {
+    String getPedalList() {
         String message = String.join(", ", handler.getPedals());
         return checkAndSendMessageUsage(message, "list of pedals.");
     }
 
 
     @PutMapping("/pedal/{pedalName}")
-    String getPedalsList(@PathVariable String pedalName) {
+    String getPedalConfig(@PathVariable String pedalName) {
         String message = handler.getPedalConfig(pedalName);
         return checkAndSendMessageUsage(message, pedalName + "'s config file as a YAML object.");
+    }
+
+
+    @PutMapping("/songs/")
+    String getSongList() {
+        String message = String.join(", ", handler.getSongs());
+        return checkAndSendMessageUsage(message, "list of songs.");
+    }
+
+
+    @PutMapping("/song/{songName}")
+    String getSongConfig(@PathVariable String songName) {
+        String message = handler.getSongConfig(songName);
+        return checkAndSendMessageUsage(message, songName + "'s config file as a YAML object.");
     }
 
 

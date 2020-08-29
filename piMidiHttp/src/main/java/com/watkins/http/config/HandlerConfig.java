@@ -7,16 +7,16 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(value="pi-midi-http.handler")
 public class HandlerConfig {
-    private String setlistsPath;
+    private String songSetPath;
     private String pedalsPath;
     private String midiControllerConfigPath;
 
-    public String getSetlistsPath() {
-        return setlistsPath;
+    public String getSongSetPath() {
+        return songSetPath;
     }
 
-    public void setSetlistsPath(String setlistsPath) {
-        this.setlistsPath = setlistsPath;
+    public void setSongSetPath(String songSetPath) {
+        this.songSetPath = songSetPath;
     }
 
     public String getPedalsPath() {

@@ -12,11 +12,15 @@ import java.nio.file.Paths;
 public class HandlerUtilities {
     public final Logger LOGGER = LoggerFactory.getLogger(HandlerUtilities.class);
 
-    public void validatePath(String path) {
+
+    public Boolean validatePath(String path) {
+        boolean isValidPath = false;
         File midiControllerConfigFile = new File(path);
         if (!midiControllerConfigFile.exists()) {
             LOGGER.error("Path, " + path + ", doesn't exist! Please properly configure.");
+            isValidPath = true;
         }
+        return isValidPath;
     }
 
 
