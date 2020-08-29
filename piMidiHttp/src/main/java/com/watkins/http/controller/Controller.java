@@ -5,17 +5,17 @@ import com.watkins.http.handlers.Handler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+//import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.concurrent.TimeUnit;
+//import java.util.concurrent.TimeUnit;
 
 
 @RestController("/controller")
 public class Controller {
-    @Value("${pi-midi-http.controller.response-wait-time-ms:2000}")
-    private int responseWaitTimeMs;
+//    @Value("${pi-midi-http.controller.response-wait-time-ms:2000}")
+//    private int responseWaitTimeMs;
     public final Logger LOGGER = LoggerFactory.getLogger(Controller.class);
     static final int TIMEOUT_MS = 100;
 
@@ -23,8 +23,8 @@ public class Controller {
     private Handler handler;
 
     @PostMapping("/pedal/{pedalName}")
-    String setPedalConfigFile(@PathVariable String pedalName, @RequestBody PedalConfig pedalConfig) {
-        String message = handler.createMsg();
+    String createPedalConfigFile(@PathVariable String pedalName, @RequestBody PedalConfig pedalConfig) {
+        String message = handler.createPedalConfig(pedalName, pedalConfig);
         String loggingStr = "Wrote config file for " + pedalName + ". -> \n" +
                 pedalConfig.toString();
         return checkAndSendMessageUsage(message, loggingStr);

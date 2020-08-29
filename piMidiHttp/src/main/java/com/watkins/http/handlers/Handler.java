@@ -1,6 +1,7 @@
 package com.watkins.http.handlers;
 
 import com.watkins.http.config.HandlerConfig;
+import com.watkins.http.customObjects.PedalConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,11 @@ public class Handler {
 
 
     public String getPedals() {
-        return "";
+        return "This is a stub for the getPedals method.";
+    }
+
+    
+    public String createPedalConfig(String pedalName, PedalConfig pedalConfig) {
+        return "This is a stub for the createPedalConfig method.";
     }
 }
