@@ -3,24 +3,24 @@ package com.watkins.http.customObjects;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class EmpSmidPair {
-    private Map<SmIdAddress, EmpAddress> empSmidPair;
+public class Song {
+    private Map<Setlist, Part> empSmidPair;
 
-    public EmpSmidPair() {
+    public Song() {
     }
 
 
-    public EmpSmidPair(Map<SmIdAddress, EmpAddress> empSmidPair) {
+    public Song(Map<Setlist, Part> empSmidPair) {
         this.empSmidPair = empSmidPair;
     }
 
 
-    public void setEmpSmidPair(Map<SmIdAddress, EmpAddress> empSmidPair) {
+    public void setEmpSmidPair(Map<Setlist, Part> empSmidPair) {
         this.empSmidPair = empSmidPair;
     }
 
 
-    public Map<SmIdAddress, EmpAddress> getEmpSmidPair() {
+    public Map<Setlist, Part> getEmpSmidPair() {
         return this.empSmidPair;
     }
 

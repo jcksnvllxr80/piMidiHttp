@@ -3,15 +3,15 @@ package com.watkins.http.customObjects;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class StatusPropertyList {
+public class PartList {
     private ArrayList<String> statusPropertyList;
 
 
-    public StatusPropertyList() {
+    public PartList() {
     }
 
 
-    public StatusPropertyList(ArrayList<String> statusPropertyList) {
+    public PartList(ArrayList<String> statusPropertyList) {
         this.statusPropertyList = statusPropertyList;
     }
 

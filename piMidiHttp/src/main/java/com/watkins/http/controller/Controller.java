@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 //import java.util.concurrent.TimeUnit;
 
 
@@ -33,16 +36,22 @@ public class Controller {
 
     @PutMapping("/pedals/")
     String getPedalsList() {
-        String message = handler.getPedals();
-        String loggingStr = "returning a list of pedals that have conf files.";
-        return checkAndSendMessageUsage(message, loggingStr);
+        String message = String.join(", ", handler.getPedals());
+        return checkAndSendMessageUsage(message, "list of pedals.");
+    }
+
+
+    @PutMapping("/pedal/{pedalName}")
+    String getPedalsList(@PathVariable String pedalName) {
+        String message = handler.getPedalConfig(pedalName);
+        return checkAndSendMessageUsage(message, pedalName + "'s config file as a json object.");
     }
 
 
     @PutMapping(value = "/help", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     String printHelp() {
-        String usage = "This is a placeholder for the help string.";
+        String usage = "This is a placeholder for the help string. ";
         return getHelp(usage);
     }
 
@@ -50,11 +59,11 @@ public class Controller {
     private String checkAndSendMessageUsage(String message, String loggingStr) {
         String loggingString;
         if (message == null) {
-            loggingString = "Message NOT " + loggingStr;
+            loggingString = "Not sending " + loggingStr;
             LOGGER.error(loggingString);
         } else {
-            loggingString = "Message " + loggingStr;
-            LOGGER.info(loggingString);
+            loggingString = "Sending " + loggingStr + " " + message;
+            LOGGER.info(loggingString + " " + message);
         }
         return loggingString + "\n";
     }

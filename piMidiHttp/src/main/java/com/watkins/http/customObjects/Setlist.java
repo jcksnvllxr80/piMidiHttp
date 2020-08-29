@@ -1,13 +1,13 @@
 package com.watkins.http.customObjects;
 
-public class SmIdAddress {
+public class Setlist {
     private String smId;
 
-    public SmIdAddress() {
+    public Setlist() {
     }
 
 
-    public SmIdAddress(String empSmidPair) {
+    public Setlist(String empSmidPair) {
         this.smId = empSmidPair;
     }
 

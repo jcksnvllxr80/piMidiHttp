@@ -1,13 +1,13 @@
 package com.watkins.http.customObjects;
 
-public class EmpAddress {
+public class Part {
     private String empAddress;
 
-    public EmpAddress() {
+    public Part() {
     }
 
 
-    public EmpAddress(String empAddress) {
+    public Part(String empAddress) {
         this.empAddress = empAddress;
     }
 

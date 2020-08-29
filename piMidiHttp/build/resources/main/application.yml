@@ -5,8 +5,8 @@ pi-midi-http:
     setlists-path: "/home/pi/MidiController/PartSongSet/Sets/"
     pedals-path: "/home/pi/MidiController/Main/Conf/MidiPedals/"
     midi-controller-config-path: "/home/pi/MidiController/Main/Conf/midi_controller.yaml"
-  controller:
-    response-wait-time-ms: 10000
+#  controller:
+#    response-wait-time-ms: 10000
 spring:
   banner:
     location: classpath:banner.txt
