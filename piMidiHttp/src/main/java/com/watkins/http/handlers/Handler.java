@@ -37,7 +37,7 @@ public class Handler {
         return "This is a stub for the getPedals method.";
     }
 
-    
+
     public String createPedalConfig(String pedalName, PedalConfig pedalConfig) {
         return "This is a stub for the createPedalConfig method.";
     }
