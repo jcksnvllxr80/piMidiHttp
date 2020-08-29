@@ -45,6 +45,6 @@ public class Handler extends HandlerUtilities {
 
 
     public String getPedalConfig(String pedalName) {
-        return new PedalHandler(this.pedalsPath).getPedalConfigAsJson(pedalName);
+        return new PedalHandler(this.pedalsPath).getPedalConfigJson(pedalName);
     }
 }

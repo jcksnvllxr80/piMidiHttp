@@ -1,15 +1,9 @@
 package com.watkins.http.handlers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 
 public class PedalHandler extends HandlerUtilities {
@@ -36,13 +30,7 @@ public class PedalHandler extends HandlerUtilities {
     }
 
 
-    public String getPedalConfigAsJson(String pedalName) {
-        String fileString = null;
-        try {
-            fileString = readFile(this.pedalsPath + "/" + pedalName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return fileString;
+    public String getPedalConfigJson(String pedalName) {
+        return readFile(this.pedalsPath + "/" + pedalName);
     }
 }

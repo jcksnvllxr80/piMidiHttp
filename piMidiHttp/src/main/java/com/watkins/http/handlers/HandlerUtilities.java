@@ -1,8 +1,5 @@
 package com.watkins.http.handlers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.watkins.http.factories.YAMLFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,17 +20,19 @@ public class HandlerUtilities {
     }
 
 
-    public String readFile(String path) throws IOException {
-        byte[] encoded = Files.readAllBytes(Paths.get(path));
+    public String readFile(String path) {
+        byte[] encoded = new byte[0];
+        try {
+            encoded = Files.readAllBytes(Paths.get(path));
+        } catch (IOException e) {
+            logAndPrintStackTrace(e, LOGGER);
+        }
         return new String(encoded, StandardCharsets.US_ASCII);
     }
 
 
-    String convertYamlToJson(String yaml) throws JsonProcessingException {
-        ObjectMapper yamlReader = new ObjectMapper(new YAMLFactory());
-        Object obj = yamlReader.readValue(yaml, Object.class);
-
-        ObjectMapper jsonWriter = new ObjectMapper();
-        return jsonWriter.writeValueAsString(obj);
+    public void logAndPrintStackTrace(Exception e, Logger logger) {
+        logger.error(e.getMessage());
+        e.printStackTrace();
     }
 }

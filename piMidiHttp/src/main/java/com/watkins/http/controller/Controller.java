@@ -5,12 +5,10 @@ import com.watkins.http.handlers.Handler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
+//import org.springframework.beans.factory.annotation.Value;
 
 //import java.util.concurrent.TimeUnit;
 
@@ -20,7 +18,6 @@ public class Controller {
 //    @Value("${pi-midi-http.controller.response-wait-time-ms:2000}")
 //    private int responseWaitTimeMs;
     public final Logger LOGGER = LoggerFactory.getLogger(Controller.class);
-    static final int TIMEOUT_MS = 100;
 
     @Autowired
     private Handler handler;
@@ -28,8 +25,7 @@ public class Controller {
     @PostMapping("/pedal/{pedalName}")
     String createPedalConfigFile(@PathVariable String pedalName, @RequestBody PedalConfig pedalConfig) {
         String message = handler.createPedalConfig(pedalName, pedalConfig);
-        String loggingStr = "Wrote config file for " + pedalName + ". -> \n" +
-                pedalConfig.toString();
+        String loggingStr = "Wrote config file for " + pedalName + ". -> \n" + pedalConfig.toString();
         return checkAndSendMessageUsage(message, loggingStr);
     }
 
@@ -44,7 +40,7 @@ public class Controller {
     @PutMapping("/pedal/{pedalName}")
     String getPedalsList(@PathVariable String pedalName) {
         String message = handler.getPedalConfig(pedalName);
-        return checkAndSendMessageUsage(message, pedalName + "'s config file as a json object.");
+        return checkAndSendMessageUsage(message, pedalName + "'s config file as a YAML object.");
     }
 
 
@@ -62,8 +58,8 @@ public class Controller {
             loggingString = "Not sending " + loggingStr;
             LOGGER.error(loggingString);
         } else {
-            loggingString = "Sending " + loggingStr + " " + message;
-            LOGGER.info(loggingString + " " + message);
+            loggingString = "Sending " + loggingStr + "\n" + message;
+            LOGGER.info(loggingString);
         }
         return loggingString + "\n";
     }
