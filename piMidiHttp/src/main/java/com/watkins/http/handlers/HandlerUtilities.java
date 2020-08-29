@@ -1,4 +1,4 @@
-package com.watkins.http.msgHandlers;
+package com.watkins.http.handlers;
 
 import org.apache.commons.cli.*;
 import org.json.JSONException;
@@ -8,28 +8,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-public class MessagingHandlerUtilities {
-    Logger LOGGER = LoggerFactory.getLogger(MessagingHandlerUtilities.class);
-    public int sessionId;
-
-    public MessagingHandlerUtilities() {
-    }
-
-
-    public MessagingHandlerUtilities(int sessionId){
-        this.sessionId = sessionId;
-    }
+public class HandlerUtilities {
+    Logger LOGGER = LoggerFactory.getLogger(HandlerUtilities.class);
 
 
     public String handleResponse(Short responseCode){
         LOGGER.debug("Received message's response description: " + responseCode);
         return String.valueOf(responseCode);
-    }
-
-
-    public void setMessageSettings(String message){
-//        LOGGER.debug("EMP message DataIntegrityType is set to: " + message.getDataIntegrityType());
-//        message.setMessageNumberTransactionId(transactionID); // any non-zero number
     }
 
 
@@ -46,6 +31,7 @@ public class MessagingHandlerUtilities {
             LOGGER.error("Caught JSONException trying to update JSON fields: " + e.getMessage());
             e.printStackTrace();
         }
+        assert jsonObj != null;
         return jsonObj.toString();
     }
 
@@ -58,7 +44,6 @@ public class MessagingHandlerUtilities {
         options.addOption("d", "destination", true, "Destination Asset");
         options.addOption("i", "role-id", true, "Role ID");
         options.addOption("l", "access-level", true, "Access Level");
-//        HelpFormatter formatter = new HelpFormatter();
         CommandLineParser parser = new DefaultParser();
         return parser.parse(options, commandLineArgs);
     }

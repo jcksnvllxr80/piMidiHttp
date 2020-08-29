@@ -37,9 +37,6 @@ dependencies {
         exclude module : 'spring-boot-starter-logging'
     }
 
-    compile group: 'org.elasticsearch', name: 'elasticsearch', version: "$elasticVersion"
-    compile group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: "$elasticVersion"
-
     compile("org.springframework.boot:spring-boot-starter-test:$springVersion"){
         exclude module : 'spring-boot-starter-logging'
     }

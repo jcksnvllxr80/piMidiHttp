@@ -1,28 +1,12 @@
 server:
   port: 8081
 pi-midi-http:
-  parser:
-    keystore-path: /etc/watkins/keystores/myKs_RSA_2048.jks
-    keystore-password: changeMeNow
-    status-properties-list:
-      - 001f
-      - 2401
-      - 2402
-      - 2403
-      - 2404
-      - 2430
-      - 2801
-      - 2811
-      - 4020
+  handler:
+    setlists-path: "/home/pi/MidiController/PartSongSet/Sets/"
+    pedals-path: "/home/pi/MidiController/Main/Conf/MidiPedals/"
+    midi-controller-config-path: "/home/pi/MidiController/Main/Conf/midi_controller.yaml"
   controller:
     response-wait-time-ms: 10000
-elasticsearch:
-  host: 127.0.0.1
-  port: 9200
-  username: elastic
-  password: changeme
-  index: itcsm
-  type: _doc
 spring:
   banner:
     location: classpath:banner.txt
