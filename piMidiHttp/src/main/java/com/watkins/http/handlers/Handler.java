@@ -24,7 +24,7 @@ public class Handler extends HandlerUtilities {
         this.pedalsPath = handlerConfig.getPedalsPath();
         this.midiControllerConfigPath = handlerConfig.getMidiControllerConfigPath();
         LOGGER.debug("Instantiating Handler object. " + this.toString());
-        validatePath(this.midiControllerConfigPath);
+        isValidPath(this.midiControllerConfigPath);
     }
 
     @Override
@@ -49,8 +49,13 @@ public class Handler extends HandlerUtilities {
     }
 
 
-    public String createPedalConfig(String pedalName, PedalConfig pedalConfig) {
-        return "This is a stub for the createPedalConfig method.";
+//    public String createPedalConfig(String pedalName, PedalConfig pedalConfig) {
+//        return new PedalHandler(this.pedalsPath).createPedalConfigFile(pedalName, pedalConfig);
+//    }
+
+
+    public String createPedalConfig(String pedalName, String pedalConfig) {
+        return new PedalHandler(this.pedalsPath).createPedalConfigFile(pedalName, pedalConfig);
     }
 
 

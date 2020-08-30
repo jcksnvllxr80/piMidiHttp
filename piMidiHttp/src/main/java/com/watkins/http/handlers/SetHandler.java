@@ -30,6 +30,6 @@ public class SetHandler extends HandlerUtilities{
 
 
     public String getSetConfigFile(String setName) {
-        return convertYamlToJson(tryUnderscoresThenSpaces(this.setlistsPath, setName));
+        return validatePathThenConvert(this.setlistsPath + setName);
     }
 }

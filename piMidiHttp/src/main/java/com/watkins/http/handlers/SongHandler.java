@@ -30,6 +30,6 @@ public class SongHandler extends HandlerUtilities {
 
 
     public String getSongConfigFile(String songName) {
-        return convertYamlToJson(tryUnderscoresThenSpaces(this.songsPath, songName));
+        return validatePathThenConvert(this.songsPath + songName);
     }
 }

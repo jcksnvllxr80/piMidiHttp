@@ -1,7 +1,10 @@
 package com.watkins.http.handlers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +18,7 @@ public class HandlerUtilities {
     public final Logger LOGGER = LoggerFactory.getLogger(HandlerUtilities.class);
 
 
-    public Boolean validatePath(String path) {
+    public Boolean isValidPath(String path) {
         boolean isValidPath = true;
         File midiControllerConfigFile = new File(path);
         if (!midiControllerConfigFile.exists()) {
@@ -38,13 +41,6 @@ public class HandlerUtilities {
     }
 
 
-    public String replaceUnderscoreWithSpace(String filename) {
-        char underscore = '_';
-        char space = ' ';
-        return filename.replace(underscore, space);
-    }
-
-
     public void logAndPrintStackTrace(Exception e, Logger logger) {
         logger.error(e.getMessage());
         e.printStackTrace();
@@ -64,15 +60,19 @@ public class HandlerUtilities {
     }
 
 
-    public String tryUnderscoresThenSpaces(String path, String filename) {
-        String filePath = path + filename;
-        String underscorelessFilePath = path + replaceUnderscoreWithSpace(filename);
-        if (validatePath(filePath)) {
-            return readFile(filePath);
-        } else if (validatePath(underscorelessFilePath)) {
-            return readFile(underscorelessFilePath);
-        } else {
-            return "Bad path: " + filePath;
+    public String convertJsonToYaml(String jsonString) {
+        try {
+            JsonNode jsonNodeTree = new ObjectMapper().readTree(jsonString);
+            return new YAMLMapper().writeValueAsString(jsonNodeTree);
+        } catch (JsonProcessingException e) {
+            logAndPrintStackTrace(e, LOGGER);
         }
+        return null;
+    }
+
+
+
+    public String validatePathThenConvert(String filePath) {
+        return isValidPath(filePath) ? convertYamlToJson(readFile(filePath)) : "Bad path: " + filePath;
     }
 }

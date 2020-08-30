@@ -22,8 +22,16 @@ public class Controller {
     @Autowired
     private Handler handler;
 
+//    @PostMapping("/pedal/{pedalName}")
+//    String createPedalConfigFile(@PathVariable String pedalName, @RequestBody PedalConfig pedalConfig) {
+//        String message = handler.createPedalConfig(pedalName, pedalConfig);
+//        String loggingStr = "Wrote config file for " + pedalName + ". -> \n" + pedalConfig.toString();
+//        return checkAndSendMessageUsage(message, loggingStr);
+//    }
+
+
     @PostMapping("/pedal/{pedalName}")
-    String createPedalConfigFile(@PathVariable String pedalName, @RequestBody PedalConfig pedalConfig) {
+    String createPedalConfigFile(@PathVariable String pedalName, @RequestBody String pedalConfig) {
         String message = handler.createPedalConfig(pedalName, pedalConfig);
         String loggingStr = "Wrote config file for " + pedalName + ". -> \n" + pedalConfig.toString();
         return checkAndSendMessageUsage(message, loggingStr);
