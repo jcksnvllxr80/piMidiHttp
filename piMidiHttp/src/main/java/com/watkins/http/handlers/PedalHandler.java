@@ -1,10 +1,10 @@
 package com.watkins.http.handlers;
 
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.util.List;
 
 public class PedalHandler extends HandlerUtilities {
     Logger LOGGER = LoggerFactory.getLogger(PedalHandler.class);
@@ -24,9 +24,9 @@ public class PedalHandler extends HandlerUtilities {
     }
 
 
-    public List<String> getPedalList() {
+    public JSONArray getPedalList() {
         LOGGER.debug("Get list of files (pedals) at path. " + this.pedalsPath + ".");
-        return csvStringToArray(new File(this.pedalsPath).list());
+        return csvStringToJsonArray(new File(this.pedalsPath).list());
     }
 
 

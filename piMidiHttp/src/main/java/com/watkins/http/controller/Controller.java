@@ -1,31 +1,17 @@
 package com.watkins.http.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import com.watkins.http.handlers.Handler;
-import net.minidev.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-//import org.springframework.beans.factory.annotation.Value;
-
-//import java.util.concurrent.TimeUnit;
-
-
 @RestController("/controller")
 public class Controller {
-//    @Value("${pi-midi-http.controller.response-wait-time-ms:2000}")
-//    private int responseWaitTimeMs;
     public final Logger LOGGER = LoggerFactory.getLogger(Controller.class);
 
     @Autowired
@@ -154,9 +140,13 @@ public class Controller {
     }
 
 
-    private String makeJsonStringFromKeyPair(String key, List<String> list) {
+    private String makeJsonStringFromKeyPair(String key, JSONArray list) {
         return new JSONObject(){{
-            put(key, new Gson().toJson(list));
+            try {
+                put(key, list);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }}.toString();
     }
 }

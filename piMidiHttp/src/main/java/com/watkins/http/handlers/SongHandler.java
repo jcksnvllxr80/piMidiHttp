@@ -1,10 +1,10 @@
 package com.watkins.http.handlers;
 
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.util.List;
 
 public class SongHandler extends HandlerUtilities {
     Logger LOGGER = LoggerFactory.getLogger(SongHandler.class);
@@ -24,9 +24,9 @@ public class SongHandler extends HandlerUtilities {
     }
 
 
-    public List<String> getSongList() {
+    public JSONArray getSongList() {
         LOGGER.debug("Get list of files (songs) at path. " + this.songsPath + ".");
-        return csvStringToArray(new File(this.songsPath).list());
+        return csvStringToJsonArray(new File(this.songsPath).list());
     }
 
 

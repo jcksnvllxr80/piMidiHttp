@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,10 +16,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class HandlerUtilities {
     public final Logger LOGGER = LoggerFactory.getLogger(HandlerUtilities.class);
@@ -96,8 +94,10 @@ public class HandlerUtilities {
     }
 
 
-    public List<String> csvStringToArray(String[] csvString){
-        return Arrays.stream(Arrays.toString(csvString).split(", ")).collect(Collectors.toList());
+    public JSONArray csvStringToJsonArray(String[] csvString){
+        JSONArray myJsonArray = new JSONArray();
+        Arrays.asList(Arrays.toString(csvString).split(", ")).forEach(myJsonArray::put);
+        return myJsonArray;
     }
 
 

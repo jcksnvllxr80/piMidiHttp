@@ -1,10 +1,10 @@
 package com.watkins.http.handlers;
 
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.util.List;
 
 public class SetHandler extends HandlerUtilities{
     Logger LOGGER = LoggerFactory.getLogger(SetHandler.class);
@@ -24,9 +24,9 @@ public class SetHandler extends HandlerUtilities{
     }
 
 
-    public List<String> getSetList() {
+    public JSONArray getSetList() {
         LOGGER.debug("Get list of files (songs) at path. " + this.setlistsPath + ".");
-        return csvStringToArray(new File(this.setlistsPath).list());
+        return csvStringToJsonArray(new File(this.setlistsPath).list());
     }
 
 

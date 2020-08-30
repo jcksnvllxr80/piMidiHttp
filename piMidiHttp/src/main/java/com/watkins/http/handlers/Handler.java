@@ -1,12 +1,11 @@
 package com.watkins.http.handlers;
 
 import com.watkins.http.config.HandlerConfig;
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class Handler extends HandlerUtilities {
@@ -40,7 +39,7 @@ public class Handler extends HandlerUtilities {
     }
 
 
-    public List<String> getPedals() {
+    public JSONArray getPedals() {
         return new PedalHandler(this.pedalsPath).getPedalList();
     }
 
@@ -55,7 +54,7 @@ public class Handler extends HandlerUtilities {
     }
 
 
-    public List<String> getSongs() {
+    public JSONArray getSongs() {
         return new SongHandler(this.songsPath).getSongList();
     }
 
@@ -70,7 +69,7 @@ public class Handler extends HandlerUtilities {
     }
 
 
-    public List<String> getSets() {
+    public JSONArray getSets() {
         return new SetHandler(this.setlistsPath).getSetList();
     }
 
