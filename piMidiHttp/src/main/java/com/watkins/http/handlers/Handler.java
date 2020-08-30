@@ -1,7 +1,6 @@
 package com.watkins.http.handlers;
 
 import com.watkins.http.config.HandlerConfig;
-import com.watkins.http.customObjects.PedalConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,11 +48,6 @@ public class Handler extends HandlerUtilities {
     }
 
 
-//    public String createPedalConfig(String pedalName, PedalConfig pedalConfig) {
-//        return new PedalHandler(this.pedalsPath).createPedalConfigFile(pedalName, pedalConfig);
-//    }
-
-
     public String createPedalConfig(String pedalName, String pedalConfig) {
         return new PedalHandler(this.pedalsPath).createPedalConfigFile(pedalName, pedalConfig);
     }
@@ -69,8 +63,8 @@ public class Handler extends HandlerUtilities {
     }
 
 
-    public String createSongConfig(String songName, PedalConfig songConfig) {
-        return "This is a stub for the createSongConfig method.";
+    public String createSongConfig(String songName, String songConfig) {
+        return new SongHandler(this.songsPath).createSongConfigFile(songName, songConfig);
     }
 
 
@@ -84,7 +78,7 @@ public class Handler extends HandlerUtilities {
     }
 
 
-    public String createSetConfig(String setName, PedalConfig setConfig) {
-        return "This is a stub for the createSetConfig method.";
+    public String createSetConfig(String setName, String setConfig) {
+        return new SetHandler(this.setlistsPath).createSetConfigFile(setName, setConfig);
     }
 }

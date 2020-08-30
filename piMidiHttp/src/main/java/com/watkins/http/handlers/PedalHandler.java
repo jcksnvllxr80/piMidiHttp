@@ -1,6 +1,5 @@
 package com.watkins.http.handlers;
 
-import com.watkins.http.customObjects.PedalConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,14 +34,9 @@ public class PedalHandler extends HandlerUtilities {
     }
 
 
-//    public String createPedalConfigFile(String pedalName, PedalConfig pedalConfig) {
-//        LOGGER.info(pedalName + " pedal config as YAML\n" + convertJsonToYaml(pedalConfig));
-//    }
-
-
     public String createPedalConfigFile(String pedalName, String pedalConfig) {
-        String yaml = convertJsonToYaml(pedalConfig);
-        LOGGER.info(pedalName + " pedal config as YAML\n" + yaml);
-        return yaml;
+        String yamlOutput = convertJsonToYaml(pedalConfig);
+        LOGGER.info(pedalName + " pedal config as YAML\n" + yamlOutput);
+        return yamlOutput;
     }
 }

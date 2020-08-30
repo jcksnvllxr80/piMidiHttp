@@ -1,6 +1,5 @@
 package com.watkins.http.controller;
 
-import com.watkins.http.customObjects.PedalConfig;
 import com.watkins.http.handlers.Handler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,13 +20,6 @@ public class Controller {
 
     @Autowired
     private Handler handler;
-
-//    @PostMapping("/pedal/{pedalName}")
-//    String createPedalConfigFile(@PathVariable String pedalName, @RequestBody PedalConfig pedalConfig) {
-//        String message = handler.createPedalConfig(pedalName, pedalConfig);
-//        String loggingStr = "Wrote config file for " + pedalName + ". -> \n" + pedalConfig.toString();
-//        return checkAndSendMessageUsage(message, loggingStr);
-//    }
 
 
     @PostMapping("/pedal/{pedalName}")
@@ -52,6 +44,14 @@ public class Controller {
     }
 
 
+    @PostMapping("/song/{songName}")
+    String createSongConfigFile(@PathVariable String songName, @RequestBody String songConfig) {
+        String message = handler.createSongConfig(songName, songConfig);
+        String loggingStr = "Wrote config file for " + songName + ". -> \n" + songConfig.toString();
+        return checkAndSendMessageUsage(message, loggingStr);
+    }
+
+    
     @PutMapping("/songs/")
     String getSongList() {
         String message = String.join(", ", handler.getSongs());
@@ -63,6 +63,14 @@ public class Controller {
     String getSongConfig(@PathVariable String songName) {
         String message = handler.getSongConfig(songName);
         return checkAndSendMessageUsage(message, songName + "'s config file as a YAML object.");
+    }
+
+
+    @PostMapping("/set/{setName}")
+    String createSetConfigFile(@PathVariable String setName, @RequestBody String setConfig) {
+        String message = handler.createSetConfig(setName, setConfig);
+        String loggingStr = "Wrote config file for " + setName + ". -> \n" + setConfig.toString();
+        return checkAndSendMessageUsage(message, loggingStr);
     }
 
 

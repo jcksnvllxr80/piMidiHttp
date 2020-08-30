@@ -32,4 +32,11 @@ public class SongHandler extends HandlerUtilities {
     public String getSongConfigFile(String songName) {
         return validatePathThenConvert(this.songsPath + songName);
     }
+
+
+    public String createSongConfigFile(String songName, String songConfig) {
+        String yamlOutput = convertJsonToYaml(songConfig);
+        LOGGER.info(songName + " song config was created as YAML\n" + yamlOutput);
+        return yamlOutput;
+    }
 }
