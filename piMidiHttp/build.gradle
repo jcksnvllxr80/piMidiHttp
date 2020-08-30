@@ -41,6 +41,9 @@ dependencies {
         exclude module : 'spring-boot-starter-logging'
     }
 
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    compile "com.google.code.gson:gson:$GsonVersion"
+
     compile "com.fasterxml.jackson.core:jackson-core:$jacksonCoreVersion"
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
     compile "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonYamlVersion"

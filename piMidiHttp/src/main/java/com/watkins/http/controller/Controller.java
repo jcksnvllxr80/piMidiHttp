@@ -1,13 +1,20 @@
 package com.watkins.http.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.watkins.http.handlers.Handler;
 import net.minidev.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 //import org.springframework.beans.factory.annotation.Value;
@@ -35,7 +42,6 @@ public class Controller {
 
 
     @GetMapping("/pedals")
-    @PutMapping("/pedals")
     @ResponseBody
     public String getPedalList() {
         String message = makeJsonStringFromKeyPair("Pedals", handler.getPedals());
@@ -44,7 +50,6 @@ public class Controller {
 
 
     @GetMapping("/pedal/{pedalName}")
-    @PutMapping("/pedal/{pedalName}")
     @ResponseBody
     public String getPedalConfig(@PathVariable String pedalName) {
         String message = handler.getPedalConfig(pedalName);
@@ -62,7 +67,6 @@ public class Controller {
 
 
     @GetMapping("/songs")
-    @PutMapping("/songs")
     @ResponseBody
     public String getSongList() {
         String message = makeJsonStringFromKeyPair("Songs", handler.getSongs());
@@ -70,15 +74,7 @@ public class Controller {
     }
 
 
-    private String makeJsonStringFromKeyPair(String key, List<String> value) {
-        return new JSONObject(){{
-            put(key, value);
-        }}.toString();
-    }
-
-
     @GetMapping("/song/{songName}")
-    @PutMapping("/song/{songName}")
     @ResponseBody
     public String getSongConfig(@PathVariable String songName) {
         String message = handler.getSongConfig(songName);
@@ -96,7 +92,6 @@ public class Controller {
 
 
     @GetMapping("/sets")
-    @PutMapping("/sets")
     @ResponseBody
     public String getSetList() {
         String message = makeJsonStringFromKeyPair("Sets", handler.getSets());
@@ -105,15 +100,14 @@ public class Controller {
 
 
     @GetMapping("/set/{setName}")
-    @PutMapping("/set/{setName}")
-    String getSetConfig(@PathVariable String setName) {
+    @ResponseBody
+    public String getSetConfig(@PathVariable String setName) {
         String message = handler.getSetConfig(setName);
         return logResponse(message, setName + "'s config file as a JSON String.");
     }
 
 
     @GetMapping(value = "/help", produces = MediaType.APPLICATION_JSON_VALUE)
-    @PutMapping(value = "/help", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String printHelp() {
         return String.join("\n", "You asked for help so here it is!!", getHelp());
@@ -143,26 +137,26 @@ public class Controller {
     public String getHelp() {
         String usage =
                 "@GetMapping(\"/help\")  # show the full list of API options\n" +
-                "@PutMapping(\"/help\")  # show the full list of API options\n" +
                 "\nP E D A L\n" +
                 "@PostMapping(\"/pedal/{pedalName}\")  # sets ${pedalName}'s midi config\n" +
                 "@GetMapping(\"/pedals\")  # gets the full list of midi pedals\n" +
-                "@PutMapping(\"/pedals\")  # gets the full list of midi pedals\n" +
                 "@GetMapping(\"/pedal/{pedalName}\")  # gets ${pedalName}'s midi config\n" +
-                "@PutMapping(\"/pedal/{pedalName}\")  # gets ${pedalName}'s midi config\n" +
                 "\nS O N G\n" +
                 "@PostMapping(\"/song/{songName}\")  # sets ${songName}'s config\n" +
                 "@GetMapping(\"/songs\")  # gets the full list of songs\n" +
-                "@PutMapping(\"/songs\")  # gets the full list of songs\n" +
                 "@GetMapping(\"/song/{songName}\")  # gets ${songName}'s config\n" +
-                "@PutMapping(\"/song/{songName}\")  # gets ${songName}'s config\n" +
                 "\nS E T L I S T\n" +
                 "@PostMapping(\"/set/{setName}\")  # sets ${setName}'s config\n" +
                 "@GetMapping(\"/sets\")  # gets the full list of sets\n" +
-                "@PutMapping(\"/sets\")  # gets the full list of sets\n" +
-                "@GetMapping(\"/set/{setName}\")  # gets ${setName}'s config\n" +
-                "@PutMapping(\"/set/{setName}\")  # gets ${setName}'s config\n";
+                "@GetMapping(\"/set/{setName}\")  # gets ${setName}'s config\n";
         LOGGER.info(usage);
         return usage;
+    }
+
+
+    private String makeJsonStringFromKeyPair(String key, List<String> list) {
+        return new JSONObject(){{
+            put(key, new Gson().toJson(list));
+        }}.toString();
     }
 }
