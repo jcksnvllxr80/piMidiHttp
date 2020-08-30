@@ -95,9 +95,10 @@ public class HandlerUtilities {
 
 
     public JSONArray csvStringToJsonArray(String[] csvString){
-        JSONArray myJsonArray = new JSONArray();
-        Arrays.asList(Arrays.toString(csvString).split(", ")).forEach(myJsonArray::put);
-        return myJsonArray;
+        JSONArray jsonArray = new JSONArray();
+        Arrays.asList(Arrays.toString(csvString).split(", "))
+                .forEach(item -> jsonArray.put(item.replaceAll("[\\[\\]]", "")));
+        return jsonArray;
     }
 
 
