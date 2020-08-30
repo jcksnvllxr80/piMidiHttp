@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.util.List;
 
 public class SongHandler extends HandlerUtilities {
     Logger LOGGER = LoggerFactory.getLogger(SongHandler.class);
@@ -23,9 +24,9 @@ public class SongHandler extends HandlerUtilities {
     }
 
 
-    public String[] getSongList() {
+    public List<String> getSongList() {
         LOGGER.debug("Get list of files (songs) at path. " + this.songsPath + ".");
-        return new File(this.songsPath).list();
+        return csvStringToArray(new File(this.songsPath).list());
     }
 
 

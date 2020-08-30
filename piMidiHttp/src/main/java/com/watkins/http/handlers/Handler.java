@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class Handler extends HandlerUtilities {
     public final Logger LOGGER = LoggerFactory.getLogger(Handler.class);
@@ -38,7 +40,7 @@ public class Handler extends HandlerUtilities {
     }
 
 
-    public String[] getPedals() {
+    public List<String> getPedals() {
         return new PedalHandler(this.pedalsPath).getPedalList();
     }
 
@@ -53,7 +55,7 @@ public class Handler extends HandlerUtilities {
     }
 
 
-    public String[] getSongs() {
+    public List<String> getSongs() {
         return new SongHandler(this.songsPath).getSongList();
     }
 
@@ -68,7 +70,7 @@ public class Handler extends HandlerUtilities {
     }
 
 
-    public String[] getSets() {
+    public List<String> getSets() {
         return new SetHandler(this.setlistsPath).getSetList();
     }
 

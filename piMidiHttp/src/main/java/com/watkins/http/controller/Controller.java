@@ -1,11 +1,14 @@
 package com.watkins.http.controller;
 
 import com.watkins.http.handlers.Handler;
+import net.minidev.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 //import org.springframework.beans.factory.annotation.Value;
 
@@ -23,65 +26,81 @@ public class Controller {
 
 
     @PostMapping("/pedal/{pedalName}")
-    String createPedalConfigFile(@PathVariable String pedalName, @RequestBody String pedalConfig) {
+    @ResponseBody
+    public String createPedalConfigFile(@PathVariable String pedalName, @RequestBody String pedalConfig) {
         String message = handler.createPedalConfig(pedalName, pedalConfig);
         String loggingStr = "Wrote config file for " + pedalName + ". -> \n" + pedalConfig.toString();
-        return checkAndSendMessageUsage(message, loggingStr);
+        return logResponse(message, loggingStr);
     }
 
 
-    @GetMapping("/pedals/")
-    @PutMapping("/pedals/")
-    String getPedalList() {
-        String message = String.join(", ", handler.getPedals());
-        return checkAndSendMessageUsage(message, "list of pedals.");
+    @GetMapping("/pedals")
+    @PutMapping("/pedals")
+    @ResponseBody
+    public String getPedalList() {
+        String message = makeJsonStringFromKeyPair("Pedals", handler.getPedals());
+        return logResponse(message, "list of pedals.");
     }
 
 
     @GetMapping("/pedal/{pedalName}")
     @PutMapping("/pedal/{pedalName}")
-    String getPedalConfig(@PathVariable String pedalName) {
+    @ResponseBody
+    public String getPedalConfig(@PathVariable String pedalName) {
         String message = handler.getPedalConfig(pedalName);
-        return checkAndSendMessageUsage(message, pedalName + "'s config file as a JSON String.");
+        return logResponse(message, pedalName + "'s config file as a JSON String.");
     }
 
 
     @PostMapping("/song/{songName}")
-    String createSongConfigFile(@PathVariable String songName, @RequestBody String songConfig) {
+    @ResponseBody
+    public String createSongConfigFile(@PathVariable String songName, @RequestBody String songConfig) {
         String message = handler.createSongConfig(songName, songConfig);
         String loggingStr = "Wrote config file for " + songName + ". -> \n" + songConfig.toString();
-        return checkAndSendMessageUsage(message, loggingStr);
+        return logResponse(message, loggingStr);
     }
 
 
-    @GetMapping("/songs/")
-    @PutMapping("/songs/")
-    String getSongList() {
-        String message = String.join(", ", handler.getSongs());
-        return checkAndSendMessageUsage(message, "list of songs.");
+    @GetMapping("/songs")
+    @PutMapping("/songs")
+    @ResponseBody
+    public String getSongList() {
+        String message = makeJsonStringFromKeyPair("Songs", handler.getSongs());
+        return logResponse(message, "list of songs.");
     }
+
+
+    private String makeJsonStringFromKeyPair(String key, List<String> value) {
+        return new JSONObject(){{
+            put(key, value);
+        }}.toString();
+    }
+
 
     @GetMapping("/song/{songName}")
     @PutMapping("/song/{songName}")
-    String getSongConfig(@PathVariable String songName) {
+    @ResponseBody
+    public String getSongConfig(@PathVariable String songName) {
         String message = handler.getSongConfig(songName);
-        return checkAndSendMessageUsage(message, songName + "'s config file as a JSON String.");
+        return logResponse(message, songName + "'s config file as a JSON String.");
     }
 
 
     @PostMapping("/set/{setName}")
-    String createSetConfigFile(@PathVariable String setName, @RequestBody String setConfig) {
+    @ResponseBody
+    public String createSetConfigFile(@PathVariable String setName, @RequestBody String setConfig) {
         String message = handler.createSetConfig(setName, setConfig);
         String loggingStr = "Wrote config file for " + setName + ". -> \n" + setConfig.toString();
-        return checkAndSendMessageUsage(message, loggingStr);
+        return logResponse(message, loggingStr);
     }
 
 
-    @GetMapping("/sets/")
-    @PutMapping("/sets/")
-    String getSetList() {
-        String message = String.join(", ", handler.getSets());
-        return checkAndSendMessageUsage(message, "list of sets.");
+    @GetMapping("/sets")
+    @PutMapping("/sets")
+    @ResponseBody
+    public String getSetList() {
+        String message = makeJsonStringFromKeyPair("Sets", handler.getSets());
+        return logResponse(message, "list of sets.");
     }
 
 
@@ -89,29 +108,26 @@ public class Controller {
     @PutMapping("/set/{setName}")
     String getSetConfig(@PathVariable String setName) {
         String message = handler.getSetConfig(setName);
-        return checkAndSendMessageUsage(message, setName + "'s config file as a JSON String.");
+        return logResponse(message, setName + "'s config file as a JSON String.");
     }
 
 
     @GetMapping(value = "/help", produces = MediaType.APPLICATION_JSON_VALUE)
     @PutMapping(value = "/help", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    String printHelp() {
-        String usage =
-                "@PostMapping(\"/pedal/{pedalName}\") # sets ${pedalName}'s midi config\n" +
-                "@PutMapping(\"/pedals/\") # gets the full list of midi pedals\n" +
-                "@PutMapping(\"/pedal/{pedalName}\") # gets ${pedalName}'s midi config\n" +
-                "@PostMapping(\"/song/{songName}\") # sets ${songName}'s config\n" +
-                "@PutMapping(\"/songs/\") # gets the full list of songs\n" +
-                "@PutMapping(\"/song/{songName}\") # gets ${songName}'s config\n" +
-                "@PostMapping(\"/set/{setName}\") # sets ${setName}'s config\n" +
-                "@PutMapping(\"/sets/\") # gets the full list of sets\n" +
-                "@PutMapping(\"/set/{setName}\") # gets ${setName}'s config\n";
-        return getHelp(usage);
+    @ResponseBody
+    public String printHelp() {
+        return String.join("\n", "You asked for help so here it is!!", getHelp());
     }
 
 
-    private String checkAndSendMessageUsage(String message, String loggingStr) {
+    @RequestMapping(value = "*", method = { RequestMethod.GET, RequestMethod.PUT , RequestMethod.POST })
+    @ResponseBody
+    public String allFallback() {
+        return String.join("\n", "Requests should be from these options.", getHelp());
+    }
+
+
+    private String logResponse(String message, String loggingStr) {
         String loggingString;
         if (message == null) {
             loggingString = "Not sending " + loggingStr;
@@ -120,11 +136,32 @@ public class Controller {
             loggingString = "Sending " + loggingStr + "\n" + message;
             LOGGER.info(loggingString);
         }
-        return loggingString + "\n";
+        return message;
     }
     
 
-    public String getHelp(String usage) {
+    public String getHelp() {
+        String usage =
+                "@GetMapping(\"/help\")  # show the full list of API options\n" +
+                "@PutMapping(\"/help\")  # show the full list of API options\n" +
+                "\nP E D A L\n" +
+                "@PostMapping(\"/pedal/{pedalName}\")  # sets ${pedalName}'s midi config\n" +
+                "@GetMapping(\"/pedals\")  # gets the full list of midi pedals\n" +
+                "@PutMapping(\"/pedals\")  # gets the full list of midi pedals\n" +
+                "@GetMapping(\"/pedal/{pedalName}\")  # gets ${pedalName}'s midi config\n" +
+                "@PutMapping(\"/pedal/{pedalName}\")  # gets ${pedalName}'s midi config\n" +
+                "\nS O N G\n" +
+                "@PostMapping(\"/song/{songName}\")  # sets ${songName}'s config\n" +
+                "@GetMapping(\"/songs\")  # gets the full list of songs\n" +
+                "@PutMapping(\"/songs\")  # gets the full list of songs\n" +
+                "@GetMapping(\"/song/{songName}\")  # gets ${songName}'s config\n" +
+                "@PutMapping(\"/song/{songName}\")  # gets ${songName}'s config\n" +
+                "\nS E T L I S T\n" +
+                "@PostMapping(\"/set/{setName}\")  # sets ${setName}'s config\n" +
+                "@GetMapping(\"/sets\")  # gets the full list of sets\n" +
+                "@PutMapping(\"/sets\")  # gets the full list of sets\n" +
+                "@GetMapping(\"/set/{setName}\")  # gets ${setName}'s config\n" +
+                "@PutMapping(\"/set/{setName}\")  # gets ${setName}'s config\n";
         LOGGER.info(usage);
         return usage;
     }

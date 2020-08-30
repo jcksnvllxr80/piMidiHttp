@@ -15,6 +15,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class HandlerUtilities {
     public final Logger LOGGER = LoggerFactory.getLogger(HandlerUtilities.class);
@@ -89,6 +93,11 @@ public class HandlerUtilities {
         } catch (IOException e) {
             logAndPrintStackTrace(e, LOGGER);
         }
+    }
+
+
+    public List<String> csvStringToArray(String[] csvString){
+        return Arrays.stream(Arrays.toString(csvString).split(", ")).collect(Collectors.toList());
     }
 
 

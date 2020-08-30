@@ -2,7 +2,7 @@ server:
   port: 8081
 pi-midi-http:
   handler:
-    setlists-path: "/home/pi/MidiController/PartSongSet/Sets/"
+    song-set-path: "/home/pi/MidiController/PartSongSet/"
     pedals-path: "/home/pi/MidiController/Main/Conf/MidiPedals/"
     midi-controller-config-path: "/home/pi/MidiController/Main/Conf/midi_controller.yaml"
 #  controller:
