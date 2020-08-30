@@ -75,7 +75,16 @@ public class Controller {
     @PutMapping(value = "/help", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     String printHelp() {
-        String usage = "This is a placeholder for the help string. ";
+        String usage =
+                "@PostMapping(\"/pedal/{pedalName}\") # sets ${pedalName}'s midi config\n" +
+                "@PutMapping(\"/pedals/\") # gets the full list of midi pedals\n" +
+                "@PutMapping(\"/pedal/{pedalName}\") # gets ${pedalName}'s midi config\n" +
+                "@PostMapping(\"/song/{songName}\") # sets ${songName}'s config\n" +
+                "@PutMapping(\"/songs/\") # gets the full list of songs\n" +
+                "@PutMapping(\"/song/{songName}\") # gets ${songName}'s config\n" +
+                "@PostMapping(\"/set/{setName}\") # sets ${setName}'s config\n" +
+                "@PutMapping(\"/sets/\") # gets the full list of sets\n" +
+                "@PutMapping(\"/set/{setName}\") # gets ${setName}'s config\n";
         return getHelp(usage);
     }
 
