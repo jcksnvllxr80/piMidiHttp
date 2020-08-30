@@ -30,6 +30,7 @@ public class Controller {
     }
 
 
+    @GetMapping("/pedals/")
     @PutMapping("/pedals/")
     String getPedalList() {
         String message = String.join(", ", handler.getPedals());
@@ -37,6 +38,7 @@ public class Controller {
     }
 
 
+    @GetMapping("/pedal/{pedalName}")
     @PutMapping("/pedal/{pedalName}")
     String getPedalConfig(@PathVariable String pedalName) {
         String message = handler.getPedalConfig(pedalName);
@@ -52,13 +54,14 @@ public class Controller {
     }
 
 
+    @GetMapping("/songs/")
     @PutMapping("/songs/")
     String getSongList() {
         String message = String.join(", ", handler.getSongs());
         return checkAndSendMessageUsage(message, "list of songs.");
     }
 
-
+    @GetMapping("/song/{songName}")
     @PutMapping("/song/{songName}")
     String getSongConfig(@PathVariable String songName) {
         String message = handler.getSongConfig(songName);
@@ -74,6 +77,7 @@ public class Controller {
     }
 
 
+    @GetMapping("/sets/")
     @PutMapping("/sets/")
     String getSetList() {
         String message = String.join(", ", handler.getSets());
@@ -81,6 +85,7 @@ public class Controller {
     }
 
 
+    @GetMapping("/set/{setName}")
     @PutMapping("/set/{setName}")
     String getSetConfig(@PathVariable String setName) {
         String message = handler.getSetConfig(setName);
@@ -88,6 +93,7 @@ public class Controller {
     }
 
 
+    @GetMapping(value = "/help", produces = MediaType.APPLICATION_JSON_VALUE)
     @PutMapping(value = "/help", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     String printHelp() {
