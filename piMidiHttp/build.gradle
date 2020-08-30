@@ -41,7 +41,9 @@ dependencies {
         exclude module : 'spring-boot-starter-logging'
     }
 
+    compile "com.fasterxml.jackson.core:jackson-core:$jacksonCoreVersion"
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    compile "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonYamlVersion"
 
     compile group: 'commons-io', name: 'commons-io', version: "$apacheCommonsIOVersion"
     testCompile group: 'junit', name: 'junit', version: '4.12'
