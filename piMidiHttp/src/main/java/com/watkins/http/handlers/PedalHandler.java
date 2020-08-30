@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 
-
 public class PedalHandler extends HandlerUtilities {
     Logger LOGGER = LoggerFactory.getLogger(PedalHandler.class);
     String pedalsPath;

@@ -35,8 +35,28 @@ public class HandlerUtilities {
     }
 
 
+    public String replaceUnderscoreWithSpace(String pedalName) {
+        char underscore = '_';
+        char space = ' ';
+        return pedalName.replace(underscore, space);
+    }
+
+
     public void logAndPrintStackTrace(Exception e, Logger logger) {
         logger.error(e.getMessage());
         e.printStackTrace();
+    }
+
+
+    public String testUnderscoresThenSpaces(String path, String filename) {
+        String filePath = path + filename;
+        String underscorelessFilePath = path + replaceUnderscoreWithSpace(filename);
+        if (validatePath(filePath)) {
+            return readFile(filePath);
+        } else if (validatePath(underscorelessFilePath)) {
+            return readFile(underscorelessFilePath);
+        } else {
+            return "Bad path: " + filePath;
+        }
     }
 }

@@ -44,13 +44,13 @@ public class Handler extends HandlerUtilities {
     }
 
 
-    public String createPedalConfig(String pedalName, PedalConfig pedalConfig) {
-        return "This is a stub for the createPedalConfig method.";
+    public String getPedalConfig(String pedalName) {
+        return new PedalHandler(this.pedalsPath).getPedalConfigYaml(pedalName);
     }
 
 
-    public String getPedalConfig(String pedalName) {
-        return new PedalHandler(this.pedalsPath).getPedalConfigYaml(pedalName);
+    public String createPedalConfig(String pedalName, PedalConfig pedalConfig) {
+        return "This is a stub for the createPedalConfig method.";
     }
 
 
@@ -66,5 +66,20 @@ public class Handler extends HandlerUtilities {
 
     public String createSongConfig(String songName, PedalConfig songConfig) {
         return "This is a stub for the createSongConfig method.";
+    }
+
+
+    public String[] getSets() {
+        return new SetHandler(this.setlistsPath).getSetList();
+    }
+
+
+    public String getSetConfig(String setName) {
+        return new SetHandler(this.setlistsPath).getSetConfigYaml(setName);
+    }
+
+
+    public String createSetConfig(String setName, PedalConfig setConfig) {
+        return "This is a stub for the createSetConfig method.";
     }
 }

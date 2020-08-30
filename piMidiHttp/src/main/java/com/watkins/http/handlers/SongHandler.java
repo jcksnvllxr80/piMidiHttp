@@ -30,7 +30,6 @@ public class SongHandler extends HandlerUtilities {
 
 
     public String getSongConfigYaml(String songName) {
-        String filePath = this.songsPath + songName;
-        return validatePath(filePath) ? readFile(filePath) : "Bad path: " + filePath;
+        return testUnderscoresThenSpaces(this.songsPath, songName);
     }
 }

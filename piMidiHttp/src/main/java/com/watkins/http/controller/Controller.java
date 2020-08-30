@@ -58,6 +58,20 @@ public class Controller {
     }
 
 
+    @PutMapping("/sets/")
+    String getSetList() {
+        String message = String.join(", ", handler.getSets());
+        return checkAndSendMessageUsage(message, "list of sets.");
+    }
+
+
+    @PutMapping("/set/{setName}")
+    String getSetConfig(@PathVariable String setName) {
+        String message = handler.getSetConfig(setName);
+        return checkAndSendMessageUsage(message, setName + "'s config file as a YAML object.");
+    }
+
+
     @PutMapping(value = "/help", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     String printHelp() {
