@@ -29,7 +29,7 @@ public class SetHandler extends HandlerUtilities{
     }
 
 
-    public String getSetConfigYaml(String setName) {
-        return testUnderscoresThenSpaces(this.setlistsPath, setName);
+    public String getSetConfigFile(String setName) {
+        return convertYamlToJson(tryUnderscoresThenSpaces(this.setlistsPath, setName));
     }
 }

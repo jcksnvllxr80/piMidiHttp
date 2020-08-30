@@ -29,7 +29,7 @@ public class SongHandler extends HandlerUtilities {
     }
 
 
-    public String getSongConfigYaml(String songName) {
-        return testUnderscoresThenSpaces(this.songsPath, songName);
+    public String getSongConfigFile(String songName) {
+        return convertYamlToJson(tryUnderscoresThenSpaces(this.songsPath, songName));
     }
 }

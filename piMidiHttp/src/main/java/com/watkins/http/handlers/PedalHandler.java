@@ -29,8 +29,7 @@ public class PedalHandler extends HandlerUtilities {
     }
 
 
-    public String getPedalConfigYaml(String pedalName) {
-        String filePath = this.pedalsPath + pedalName;
-        return validatePath(filePath) ? readFile(filePath) : "Bad path: " + filePath;
+    public String getPedalConfigFile(String pedalName) {
+        return convertYamlToJson(tryUnderscoresThenSpaces(this.pedalsPath, pedalName));
     }
 }

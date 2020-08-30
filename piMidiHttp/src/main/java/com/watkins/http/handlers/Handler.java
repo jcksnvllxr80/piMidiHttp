@@ -45,7 +45,7 @@ public class Handler extends HandlerUtilities {
 
 
     public String getPedalConfig(String pedalName) {
-        return new PedalHandler(this.pedalsPath).getPedalConfigYaml(pedalName);
+        return new PedalHandler(this.pedalsPath).getPedalConfigFile(pedalName);
     }
 
 
@@ -60,7 +60,7 @@ public class Handler extends HandlerUtilities {
 
 
     public String getSongConfig(String songName) {
-        return new SongHandler(this.songsPath).getSongConfigYaml(songName);
+        return new SongHandler(this.songsPath).getSongConfigFile(songName);
     }
 
 
@@ -75,7 +75,7 @@ public class Handler extends HandlerUtilities {
 
 
     public String getSetConfig(String setName) {
-        return new SetHandler(this.setlistsPath).getSetConfigYaml(setName);
+        return new SetHandler(this.setlistsPath).getSetConfigFile(setName);
     }
 
 
