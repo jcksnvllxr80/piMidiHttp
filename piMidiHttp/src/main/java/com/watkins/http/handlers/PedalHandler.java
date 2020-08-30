@@ -35,8 +35,9 @@ public class PedalHandler extends HandlerUtilities {
 
 
     public String createPedalConfigFile(String pedalName, String pedalConfig) {
-        String yamlOutput = convertJsonToYaml(pedalConfig);
-        LOGGER.info(pedalName + " pedal config as YAML\n" + yamlOutput);
-        return yamlOutput;
+        String pedalConfigAsYaml = convertJsonToYaml(pedalConfig);
+        writeToFile(this.pedalsPath + pedalName + ".yaml", pedalConfigAsYaml);
+        LOGGER.info(pedalName + " pedal config as YAML\n" + pedalConfigAsYaml);
+        return pedalConfigAsYaml;
     }
 }

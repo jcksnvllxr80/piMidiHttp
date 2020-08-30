@@ -8,7 +8,9 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -48,6 +50,7 @@ public class HandlerUtilities {
 
 
     public String convertYamlToJson(String yaml) {
+        LOGGER.debug("Attempting to convert Yaml to Json.");
         try {
             ObjectMapper yamlReader = new ObjectMapper(new YAMLFactory());
             Object obj = yamlReader.readValue(yaml, Object.class);
@@ -61,6 +64,7 @@ public class HandlerUtilities {
 
 
     public String convertJsonToYaml(String jsonString) {
+        LOGGER.debug("Attempting to convert Json to Yaml.");
         try {
             JsonNode jsonNodeTree = new ObjectMapper().readTree(jsonString);
             return new YAMLMapper().writeValueAsString(jsonNodeTree);
@@ -70,6 +74,22 @@ public class HandlerUtilities {
         return null;
     }
 
+
+    public void writeToFile(String filepath, String content) {
+        LOGGER.debug("Attempting to write content to file, " + filepath + ".");
+        try {
+            if (new File(filepath).exists()) {
+                // TODO: overwrite files in the future
+                LOGGER.warn(filepath + " already exists. Currently not overwriting files.");
+            } else {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
+                writer.write(content);
+                writer.close();
+            }
+        } catch (IOException e) {
+            logAndPrintStackTrace(e, LOGGER);
+        }
+    }
 
 
     public String validatePathThenConvert(String filePath) {

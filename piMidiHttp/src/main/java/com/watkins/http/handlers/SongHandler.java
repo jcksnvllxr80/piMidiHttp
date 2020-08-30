@@ -35,8 +35,9 @@ public class SongHandler extends HandlerUtilities {
 
 
     public String createSongConfigFile(String songName, String songConfig) {
-        String yamlOutput = convertJsonToYaml(songConfig);
-        LOGGER.info(songName + " song config was created as YAML\n" + yamlOutput);
-        return yamlOutput;
+        String songConfigAsYaml = convertJsonToYaml(songConfig);
+        writeToFile(this.songsPath + songName + ".yaml", songConfigAsYaml);
+        LOGGER.info(songName + " song config was created as YAML\n" + songConfigAsYaml);
+        return songConfigAsYaml;
     }
 }

@@ -35,8 +35,9 @@ public class SetHandler extends HandlerUtilities{
 
 
     public String createSetConfigFile(String setName, String setConfig) {
-        String yamlOutput = convertJsonToYaml(setConfig);
-        LOGGER.info(setName + " setlist config was created as YAML\n" + yamlOutput);
-        return yamlOutput;
+        String setConfigAsYaml = convertJsonToYaml(setConfig);
+        writeToFile(this.setlistsPath + setName + ".yaml", setConfigAsYaml);
+        LOGGER.info(setName + " setlist config was created as YAML\n" + setConfigAsYaml);
+        return setConfigAsYaml;
     }
 }

@@ -40,7 +40,7 @@ public class Controller {
     @PutMapping("/pedal/{pedalName}")
     String getPedalConfig(@PathVariable String pedalName) {
         String message = handler.getPedalConfig(pedalName);
-        return checkAndSendMessageUsage(message, pedalName + "'s config file as a YAML object.");
+        return checkAndSendMessageUsage(message, pedalName + "'s config file as a JSON String.");
     }
 
 
@@ -51,7 +51,7 @@ public class Controller {
         return checkAndSendMessageUsage(message, loggingStr);
     }
 
-    
+
     @PutMapping("/songs/")
     String getSongList() {
         String message = String.join(", ", handler.getSongs());
@@ -62,7 +62,7 @@ public class Controller {
     @PutMapping("/song/{songName}")
     String getSongConfig(@PathVariable String songName) {
         String message = handler.getSongConfig(songName);
-        return checkAndSendMessageUsage(message, songName + "'s config file as a YAML object.");
+        return checkAndSendMessageUsage(message, songName + "'s config file as a JSON String.");
     }
 
 
@@ -84,7 +84,7 @@ public class Controller {
     @PutMapping("/set/{setName}")
     String getSetConfig(@PathVariable String setName) {
         String message = handler.getSetConfig(setName);
-        return checkAndSendMessageUsage(message, setName + "'s config file as a YAML object.");
+        return checkAndSendMessageUsage(message, setName + "'s config file as a JSON String.");
     }
 
 
