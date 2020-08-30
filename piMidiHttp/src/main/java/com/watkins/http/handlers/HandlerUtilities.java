@@ -14,17 +14,18 @@ public class HandlerUtilities {
 
 
     public Boolean validatePath(String path) {
-        boolean isValidPath = false;
+        boolean isValidPath = true;
         File midiControllerConfigFile = new File(path);
         if (!midiControllerConfigFile.exists()) {
             LOGGER.error("Path, " + path + ", doesn't exist! Please properly configure.");
-            isValidPath = true;
+            isValidPath = false;
         }
         return isValidPath;
     }
 
 
     public String readFile(String path) {
+        LOGGER.debug("Reading file , " + path + ".");
         byte[] encoded = new byte[0];
         try {
             encoded = Files.readAllBytes(Paths.get(path));
@@ -35,10 +36,10 @@ public class HandlerUtilities {
     }
 
 
-    public String replaceUnderscoreWithSpace(String pedalName) {
+    public String replaceUnderscoreWithSpace(String filename) {
         char underscore = '_';
         char space = ' ';
-        return pedalName.replace(underscore, space);
+        return filename.replace(underscore, space);
     }
 
 

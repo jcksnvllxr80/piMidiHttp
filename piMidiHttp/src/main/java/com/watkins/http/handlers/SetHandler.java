@@ -22,7 +22,7 @@ public class SetHandler extends HandlerUtilities{
                 '}';
     }
 
-    
+
     public String[] getSetList() {
         LOGGER.debug("Get list of files (songs) at path. " + this.setlistsPath + ".");
         return new File(this.setlistsPath).list();
