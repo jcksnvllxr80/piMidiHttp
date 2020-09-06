@@ -101,9 +101,9 @@ public class Controller {
     }
 
 
-    @RequestMapping(value = "*", method = { RequestMethod.GET, RequestMethod.PUT , RequestMethod.POST })
+    @RequestMapping(value = "/*", method = { RequestMethod.GET, RequestMethod.PUT , RequestMethod.POST })
     @ResponseBody
-    public String allFallback() {
+    public String fallback() {
         return String.join("\n", "Requests should be from these options.", getHelp());
     }
 
@@ -119,23 +119,23 @@ public class Controller {
         }
         return message;
     }
-    
+
 
     public String getHelp() {
         String usage =
                 "@GetMapping(\"/help\")  # show the full list of API options\n" +
-                "\nP E D A L\n" +
-                "@PostMapping(\"/pedal/{pedalName}\")  # sets ${pedalName}'s midi config\n" +
-                "@GetMapping(\"/pedals\")  # gets the full list of midi pedals\n" +
-                "@GetMapping(\"/pedal/{pedalName}\")  # gets ${pedalName}'s midi config\n" +
-                "\nS O N G\n" +
-                "@PostMapping(\"/song/{songName}\")  # sets ${songName}'s config\n" +
-                "@GetMapping(\"/songs\")  # gets the full list of songs\n" +
-                "@GetMapping(\"/song/{songName}\")  # gets ${songName}'s config\n" +
-                "\nS E T L I S T\n" +
-                "@PostMapping(\"/set/{setName}\")  # sets ${setName}'s config\n" +
-                "@GetMapping(\"/sets\")  # gets the full list of sets\n" +
-                "@GetMapping(\"/set/{setName}\")  # gets ${setName}'s config\n";
+                        "\nP E D A L\n" +
+                        "@PostMapping(\"/pedal/{pedalName}\")  # sets ${pedalName}'s midi config\n" +
+                        "@GetMapping(\"/pedals\")  # gets the full list of midi pedals\n" +
+                        "@GetMapping(\"/pedal/{pedalName}\")  # gets ${pedalName}'s midi config\n" +
+                        "\nS O N G\n" +
+                        "@PostMapping(\"/song/{songName}\")  # sets ${songName}'s config\n" +
+                        "@GetMapping(\"/songs\")  # gets the full list of songs\n" +
+                        "@GetMapping(\"/song/{songName}\")  # gets ${songName}'s config\n" +
+                        "\nS E T L I S T\n" +
+                        "@PostMapping(\"/set/{setName}\")  # sets ${setName}'s config\n" +
+                        "@GetMapping(\"/sets\")  # gets the full list of sets\n" +
+                        "@GetMapping(\"/set/{setName}\")  # gets ${setName}'s config\n";
         LOGGER.info(usage);
         return usage;
     }
