@@ -94,6 +94,20 @@ public class HandlerUtilities {
     }
 
 
+    public String deleteFile(String pathname) {
+        File fileToDelete = new File(pathname);
+        String response;
+        if (fileToDelete.delete()) {
+            response = String.join(" ", "Deleted the file:", fileToDelete.getName());
+            LOGGER.info(response);
+        } else {
+            response = String.join(" ", "Failed to delete the file:", fileToDelete.getName());
+            LOGGER.warn(response);
+        }
+        return response;
+    }
+
+
     public JSONArray csvStringToJsonArray(String[] csvString){
         JSONArray jsonArray = new JSONArray();
         Arrays.asList(Arrays.toString(csvString).split(", "))

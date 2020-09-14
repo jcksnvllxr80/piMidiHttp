@@ -41,4 +41,8 @@ public class SongHandler extends HandlerUtilities {
         LOGGER.info(songName + " song config was created as YAML\n" + songConfigAsYaml);
         return songConfigAsYaml;
     }
+
+    public String deleteSongConfigFile(String songName) {
+        return deleteFile(this.songsPath + songName + ".yaml");
+    }
 }

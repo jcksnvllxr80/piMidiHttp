@@ -68,6 +68,10 @@ public class Handler extends HandlerUtilities {
         return new SongHandler(this.songsPath).createSongConfigFile(songName, songConfig);
     }
 
+    public String deleteSongConfig(String songName) {
+        return new SongHandler(this.songsPath).deleteSongConfigFile(songName);
+    }
+
 
     public JSONArray getSets() {
         return new SetHandler(this.setlistsPath).getSetList();
@@ -81,5 +85,9 @@ public class Handler extends HandlerUtilities {
 
     public String createSetConfig(String setName, String setConfig) {
         return new SetHandler(this.setlistsPath).createSetConfigFile(setName, setConfig);
+    }
+
+    public String deleteSetConfig(String setName) {
+        return new SetHandler(this.setlistsPath).deleteSetConfigFile(setName);
     }
 }

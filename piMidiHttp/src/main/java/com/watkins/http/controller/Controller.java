@@ -48,7 +48,16 @@ public class Controller {
     @ResponseBody
     public String createSongConfigFile(@PathVariable String songName, @RequestBody String songConfig) {
         String message = handler.createSongConfig(songName, songConfig);
-        String loggingStr = "Wrote config file for " + songName + ". -> \n" + songConfig.toString();
+        String loggingStr = "Wrote config file for '" + songName + "'. -> \n" + songConfig.toString();
+        return logResponse(message, loggingStr);
+    }
+
+
+    @PostMapping("/song/delete/{songName}")
+    @ResponseBody
+    public String deleteSongConfigFile(@PathVariable String songName) {
+        String message = handler.deleteSongConfig(songName);
+        String loggingStr = "Deleted song config file for '" + songName + "'.";
         return logResponse(message, loggingStr);
     }
 
@@ -73,7 +82,16 @@ public class Controller {
     @ResponseBody
     public String createSetConfigFile(@PathVariable String setName, @RequestBody String setConfig) {
         String message = handler.createSetConfig(setName, setConfig);
-        String loggingStr = "Wrote config file for " + setName + ". -> \n" + setConfig.toString();
+        String loggingStr = "Wrote config file for '" + setName + "'. -> \n" + setConfig.toString();
+        return logResponse(message, loggingStr);
+    }
+
+
+    @PostMapping("/set/delete/{setName}")
+    @ResponseBody
+    public String deleteSetConfigFile(@PathVariable String setName) {
+        String message = handler.deleteSongConfig(setName);
+        String loggingStr = "Deleted set config file for '" + setName + "'.";
         return logResponse(message, loggingStr);
     }
 

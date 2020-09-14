@@ -41,4 +41,8 @@ public class SetHandler extends HandlerUtilities{
         LOGGER.info(setName + " setlist config was created as YAML\n" + setConfigAsYaml);
         return setConfigAsYaml;
     }
+
+    public String deleteSetConfigFile(String setName) {
+        return deleteFile(this.setlistsPath + setName + ".yaml");
+    }
 }
