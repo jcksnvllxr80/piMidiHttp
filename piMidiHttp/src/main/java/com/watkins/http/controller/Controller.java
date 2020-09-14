@@ -90,7 +90,7 @@ public class Controller {
     @PostMapping("/set/delete/{setName}")
     @ResponseBody
     public String deleteSetConfigFile(@PathVariable String setName) {
-        String message = handler.deleteSongConfig(setName);
+        String message = handler.deleteSetConfig(setName);
         String loggingStr = "Deleted set config file for '" + setName + "'.";
         return logResponse(message, loggingStr);
     }
