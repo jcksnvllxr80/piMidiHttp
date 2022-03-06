@@ -25,43 +25,43 @@ sudo apt update
 ### Install the service
 
 ```bash
-sudo apt install berrycam
+sudo apt install mypackage
 ```
 
-### Updating the berrycam service
+### Updating the mypackage service
 
 ```bash
-apt install --only-upgrade berrycam
+apt install --only-upgrade mypackage
 ```
 
 ### Uninstall the service
 
 ```bash
-sudo apt remove berrycam -y
+sudo apt remove mypackage -y
 ```
 
 ### Starting, stopping, restarting, or getting the service status
 
-#### start berryCam
+#### start mypackage
 
 ```bash
-sudo systemctl start berryCam
+sudo systemctl start mypackage
 ```
 
-#### stop berryCam
+#### stop mypackage
 
 ```bash
-sudo systemctl stop berryCam
+sudo systemctl stop mypackage
 ```
 
-#### restart berryCam
+#### restart mypackage
 
 ```bash
-sudo systemctl restart berryCam
+sudo systemctl restart mypackage
 ```
 
-#### get berryCam service status
+#### get mypackage service status
 
 ```bash
-sudo systemctl status berryCam
+sudo systemctl status mypackage
 ```
