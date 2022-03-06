@@ -9,3 +9,4 @@ piMidiHttp/.gradle/5.2.1/executionHistory/executionHistory.bin
 piMidiHttp/.gradle/5.2.1/executionHistory/executionHistory.lock
 .idea
 bin
+*.deb
