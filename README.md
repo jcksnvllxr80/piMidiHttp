@@ -4,7 +4,7 @@
 
 > $ sudo service midi_http start
 
-OR
+- OR -
 
 ## straight-up
 
