@@ -1,0 +1,4 @@
+#!/bin/bash
+sudo systemctl stop midi_http
+sudo systemctl disable midi_http
+sudo systemctl daemon-reload

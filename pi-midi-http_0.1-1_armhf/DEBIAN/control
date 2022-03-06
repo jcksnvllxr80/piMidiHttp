@@ -1,0 +1,6 @@
+Package: pi-midi-http
+Version: 0.1
+Architecture: armhf
+Depends: default-jre
+Maintainer: Aaron Watkins <ac.watkins80@gmail.com>
+Description: A service that runs at boot time on raspberry pi and listens for requests from a MIDI Web App and returns json data about songs, sets, pedals, etc. 

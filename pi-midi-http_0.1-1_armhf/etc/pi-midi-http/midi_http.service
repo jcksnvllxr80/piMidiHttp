@@ -1,0 +1,24 @@
+# this file runs /etc/pi-midi-http/pi-midi-http.jar as a service at boot time
+#
+# automate later:
+# 
+# sudo systemctl daemon-reload
+# sudo systemctl enable /etc/pi-midi-http/midi_http.service
+# sudo update-rc.d midi_http defaults
+#
+# Usage:
+# sudo systemctl start | status | stop | restart midi_http
+# OR
+# sudo service midi_http start | status | stop | restart
+
+[Unit]
+Description=Pi-MIDI-Http Service
+After=local-fs.target basic.target
+
+[Service]
+Type=idle
+User=root
+ExecStart=/usr/bin/nohup /usr/bin/java -Djava.io.tmpdir=/etc/pi-midi-http/tmp -Dlog4j.configuration=file:/etc/pi-midi-http/conf/log4j.properties -jar /etc/pi-midi-http/pi-midi-http.jar --spring.config.location=file:/etc/pi-midi-http/conf/application.yml 2>&1 &
+
+[Install]
+WantedBy=basic.target
